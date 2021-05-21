@@ -41,6 +41,7 @@ def on_new_client(socket, addr):
     
     socket.send(msg)
     socket.close()
+    
     return        
 
 def servidor(https, hport):
