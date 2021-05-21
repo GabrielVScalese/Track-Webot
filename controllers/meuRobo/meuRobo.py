@@ -12,6 +12,8 @@ print("Iniciando")
 
 timestep = 64
 
+direction = 0
+
 def get_port():
     return 9001
 
@@ -36,6 +38,12 @@ def on_new_client(socket, addr):
             break;
     msg1 = msg.decode()
     
+    if msg1.__contains__('anda'):
+       robot_controler.pararRobo(False)
+    else:       
+       robot_controler.pararRobo(True)
+    print(msg1)
+
     socket.close()
     return        
 
@@ -66,14 +74,26 @@ class MeuRobot:
         self.motor_esq.setPosition(float('+inf'))
         self.motor_dir.setPosition(float('+inf'))
 
-        self.motor_esq.setVelocity(0.0)
-        self.motor_dir.setVelocity(0.0)
+        self.motor_esq.setVelocity(2.0)
+        self.motor_dir.setVelocity(2.0)
+        
+        self.gps = self.robot.getDevice("gps")
+        self.gps.enable(timestep)
 
+        self.mainSensor = self.robot.getDevice("main_sensor")
+        self.mainSensor.enable(timestep)
+        
+        self.leftSensor = self.robot.getDevice("left_sensor")
+        self.leftSensor.enable(timestep)
+        
+        self.rightSensor = self.robot.getDevice("right_sensor")
+        self.rightSensor.enable(timestep)
+        
         self.cv = self.robot.getDevice("camera")
         self.cv.enable(timestep)
         
         img = self.cv.getImage()
-            
+       
         self.parado = False
        
     def run(self):
@@ -84,15 +104,36 @@ class TI502(MeuRobot):
     def run(self):
         sentido = 0
         
-        #img = self.cv.getImage()
-        print("a")
+        img = self.cv.getImage()
         while self.robot.step(timestep) != -1:
-           self.motor_esq.setVelocity(2.0)
-           self.motor_dir.setVelocity(2.0)        
-                
-                
-#programa principal
-
+            l_dist = self.leftSensor.getValue()
+            r_dist = self.rightSensor.getValue()
+            distLine = self.mainSensor.getValue()
+            
+            if distLine == 0:
+                #print("Linha")
+                sentido = 0
+                self.motor_dir.setVelocity(2.0)
+                self.motor_esq.setVelocity(2.0)
+            else:
+                #print("fora")
+                #print(f"Left: {l_dist} | Right: {r_dist}")
+                if sentido == 1:
+                    self.motor_dir.setVelocity(0.0)
+                    self.motor_esq.setVelocity(2.0)
+                elif sentido == 2:
+                    self.motor_dir.setVelocity(2.0)
+                    self.motor_esq.setVelocity(0.0)
+            
+                if r_dist > l_dist:
+                    sentido = 1 # go to left
+                elif r_dist < l_dist:
+                    sentido = 2 # go to right
+                else:
+                    sentido = 1
+             
+    def  pararRobo(self, estado):
+        self.parado = estado    
 
 
 robot = Robot()
