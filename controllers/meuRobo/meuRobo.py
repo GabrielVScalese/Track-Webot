@@ -1,10 +1,8 @@
-# MeuRobo.py by SLMM for TI502
-#
-#
 import struct
 import socket
 import sys
 import _thread
+import base64
 
 from controller import Robot, GPS
 
@@ -24,6 +22,8 @@ def get_ip():
         IP = s.getsockname()[0]
     except:
         IP = '127.0.0.1'
+    
+    print(IP)
     return IP
 
 
@@ -32,18 +32,14 @@ def on_new_client(socket, addr):
     while True:
         msg = socket.recv(1024)
         if msg:
-            print('chegou')
             break;
         else:
             break;
-    msg1 = msg.decode()
+            
+    image_file = open ('./image.png', 'rb')
+    msg = 'HTTP/1.1 200 OK\r\n'.encode() + "Content-Type: image/png\r\n".encode() + "Accept-Ranges: bytes\r\n\r\n".encode() + image_file.read()
     
-    if msg1.__contains__('anda'):
-       robot_controler.pararRobo(False)
-    else:       
-       robot_controler.pararRobo(True)
-    print(msg1)
-
+    socket.send(msg)
     socket.close()
     return        
 
@@ -104,8 +100,8 @@ class TI502(MeuRobot):
     def run(self):
         sentido = 0
         
-        img = self.cv.getImage()
         while self.robot.step(timestep) != -1:
+            self.cv.saveImage("image.png", 720)
             l_dist = self.leftSensor.getValue()
             r_dist = self.rightSensor.getValue()
             distLine = self.mainSensor.getValue()
