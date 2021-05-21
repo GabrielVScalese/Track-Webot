@@ -36,12 +36,6 @@ def on_new_client(socket, addr):
             break;
     msg1 = msg.decode()
     
-    if msg1.__contains__('anda'):
-       robot_controler.pararRobo(False)
-    else:       
-       robot_controler.pararRobo(True)
-    print(msg1)
-
     socket.close()
     return        
 
@@ -75,27 +69,10 @@ class MeuRobot:
         self.motor_esq.setVelocity(0.0)
         self.motor_dir.setVelocity(0.0)
 
-        # obtem o sensor de distancia
-        self.ir0 = self.robot.getDevice("ir0")
-        self.ir0.enable(timestep)
-
-        self.ir1 = self.robot.getDevice("ir1")
-        self.ir1.enable(timestep)
-
-        self.gps = self.robot.getDevice("gps")
-        self.gps.enable(timestep)
-
-        self.ir3 = self.robot.getDevice("ir3")
-        self.ir3.enable(timestep)
-# seguindo a logica .
-# obter o device
-# iniciar o device e assim aplicar ou receber comandos
-
         self.cv = self.robot.getDevice("camera")
         self.cv.enable(timestep)
         
         img = self.cv.getImage()
-        print(img)
             
         self.parado = False
        
@@ -107,43 +84,13 @@ class TI502(MeuRobot):
     def run(self):
         sentido = 0
         
-        img = self.cv.getImage()
-        
-        last_dist = self.ir3.getValue()
+        #img = self.cv.getImage()
+        print("a")
         while self.robot.step(timestep) != -1:
-            values = self.gps.getValues()
-            
-            dist = self.ir0.getValue()
-            dist1 = self.ir1.getValue()
-    
-            dist3 = self.ir3.getValue()
-            if (dist3 != last_dist):
-               print(dist3,"sentido", sentido)    
-               last_dist = dist3
-       
-            # Process sensor data here.
-            if (dist >= 500):
-                sentido = 1
-        
-            if (dist1 >= 500):
-                sentido = 0
-        
-            if (sentido == 0):
-                self.motor_esq.setVelocity(2.0)
-                self.motor_dir.setVelocity(2.0)
-            else:
-                self.motor_esq.setVelocity(-2.0)
-                self.motor_dir.setVelocity(-2.0)        
+           self.motor_esq.setVelocity(2.0)
+           self.motor_dir.setVelocity(2.0)        
                 
-            if (self.parado):
-                self.motor_esq.setVelocity(0.0)
-                self.motor_dir.setVelocity(0.0)        
                 
-
-    def  pararRobo(self, estado):
-        self.parado = estado    
-
-
 #programa principal
 
 
