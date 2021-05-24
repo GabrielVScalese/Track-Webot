@@ -65,18 +65,23 @@ class MeuRobot:
         self.robot = robot
         self.nome  = robot.getName()
         print("Nome do robo : ", self.nome)
-        self.motor_esq = self.robot.getDevice("motor roda esquerda")
-        self.motor_dir = self.robot.getDevice("motor roda direita")
-
-        self.motor_esq.setPosition(float('+inf'))
-        self.motor_dir.setPosition(float('+inf'))
-
-        self.motor_esq.setVelocity(2.0)
-        self.motor_dir.setVelocity(2.0)
         
-        self.gps = self.robot.getDevice("gps")
-        self.gps.enable(timestep)
-
+        
+        self.motor_diant_esq = self.robot.getDevice("motor_roda_diant_esq")
+        self.motor_tras_esq = self.robot.getDevice("motor_roda_tras_esq")
+        self.motor_diant_dir = self.robot.getDevice("motor_roda_diant_dir")
+        self.motor_tras_dir = self.robot.getDevice("motor_roda_tras_dir")
+        
+        self.motor_diant_esq.setPosition(float('inf'))
+        self.motor_tras_esq.setPosition(float('inf'))
+        self.motor_diant_dir.setPosition(float('inf')) 
+        self.motor_tras_dir.setPosition(float('inf'))       
+        
+        self.motor_diant_esq.setVelocity(-2.0)
+        self.motor_tras_esq.setVelocity(-2.0)
+        self.motor_diant_dir.setVelocity(-2.0)
+        self.motor_tras_dir.setVelocity(-2.0)      
+        
         self.mainSensor = self.robot.getDevice("main_sensor")
         self.mainSensor.enable(timestep)
         
@@ -95,7 +100,7 @@ class MeuRobot:
        
     def run(self):
         raise NotImplementedError
-        
+
 
 class TI502(MeuRobot):
     def run(self):
@@ -105,33 +110,12 @@ class TI502(MeuRobot):
             self.cv.saveImage("image.png", 720)
             l_dist = self.leftSensor.getValue()
             r_dist = self.rightSensor.getValue()
+            
             distLine = self.mainSensor.getValue()
+            print(distLine)
             
-            if distLine == 0:
-                #print("Linha")
-                sentido = 0
-                self.motor_dir.setVelocity(2.0)
-                self.motor_esq.setVelocity(2.0)
-            else:
-                #print("fora")
-                #print(f"Left: {l_dist} | Right: {r_dist}")
-                if sentido == 1:
-                    self.motor_dir.setVelocity(0.0)
-                    self.motor_esq.setVelocity(2.0)
-                elif sentido == 2:
-                    self.motor_dir.setVelocity(2.0)
-                    self.motor_esq.setVelocity(0.0)
-            
-                if r_dist > l_dist:
-                    sentido = 1 # go to left
-                elif r_dist < l_dist:
-                    sentido = 2 # go to right
-                else:
-                    sentido = 1
              
-    def  pararRobo(self, estado):
-        self.parado = estado    
-
+    
 
 robot = Robot()
 
