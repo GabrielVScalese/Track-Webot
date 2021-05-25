@@ -3,8 +3,8 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation -0.03604856227177635 -0.998585089035228 -0.039093747769223704 1.7996609009047602
-  position 0.16011611981658924 0.0881815880268247 -0.8379292501171098
+  orientation -0.07592120910003262 -0.9946445438822142 -0.07012988902123779 1.5800961924224206
+  position 0.32493530996074294 0.1908013747033633 -0.838327967103357
 }
 TexturedBackground {
 }
@@ -14,9 +14,30 @@ RectangleArena {
   floorSize 4 4
 }
 Robot {
-  translation 1.216803043038994 0.019938194383148488 -0.7807820435845868
-  rotation -7.537894153791679e-05 0.999999996126954 -4.543244575112672e-05 1.547058626358816
+  translation 1.1914515058398945 0.01994479083909328 -0.7713805873747783
+  rotation -9.333620561132286e-05 0.9999999951578848 -3.1186262135465735e-05 1.5470602211174806
   children [
+    DistanceSensor {
+      translation 0.03 3.05886e-08 -0.13
+      rotation 0 0 -0.9999999999999999 1.5707953071795862
+      children [
+        Transform {
+          rotation 0 0 1 -1.5707953071795862
+          children [
+            DEF shape_sensor Shape {
+              appearance PBRAppearance {
+              }
+              geometry Cylinder {
+                height 0.004
+                radius 0.008
+              }
+            }
+          ]
+        }
+      ]
+      name "right_sensor"
+      type "infra-red"
+    }
     DistanceSensor {
       translation 0 0 -0.13
       rotation 0 0 -0.9999999999999999 1.5707953071795862
@@ -38,9 +59,30 @@ Robot {
       name "main_sensor"
       type "infra-red"
     }
+    DistanceSensor {
+      translation -0.03 -3.05886e-08 -0.13
+      rotation 0 0 -0.9999999999999999 1.5707953071795862
+      children [
+        Transform {
+          rotation 0 0 1 -1.5707953071795862
+          children [
+            DEF shape_sensor Shape {
+              appearance PBRAppearance {
+              }
+              geometry Cylinder {
+                height 0.004
+                radius 0.008
+              }
+            }
+          ]
+        }
+      ]
+      name "left_sensor"
+      type "infra-red"
+    }
     HingeJoint {
       jointParameters HingeJointParameters {
-        position -83.51999801098424
+        position -83.77599809810938
         anchor 0.05 9.02874e-08 0.08
       }
       device [
@@ -49,8 +91,8 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation -0.04999778077564862 3.3266232783273084e-06 0.07999621509174798
-        rotation -0.7044128926292699 -0.7044132389556593 0.08720358640366804 3.315561135222178
+        translation -0.04999778077564862 2.262764767502971e-06 0.07999551895743368
+        rotation -0.6957477192771403 -0.6957481575848099 0.17852062160434093 3.4949131702810625
         children [
           Solid {
             children [
@@ -72,13 +114,11 @@ Robot {
         boundingObject USE shape_wheel
         physics Physics {
         }
-        linearVelocity -0.03999675589665194 7.259975835345233e-05 -0.0009504817947720113
-        angularVelocity -0.047490008104463646 0.0002523516166987519 1.999735067084876
       }
     }
     HingeJoint {
       jointParameters HingeJointParameters {
-        position -83.51999800407664
+        position -83.77599801185865
         anchor -0.05 2.66492e-07 -0.09
       }
       device [
@@ -87,8 +127,8 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation -0.04999983332821267 5.366970313833786e-06 -0.09000049616114927
-        rotation -0.7041926159638501 -0.7041931195665162 0.0906907381002495 3.3224802236260014
+        translation -0.04999983332821267 5.075114175052934e-06 -0.09000177149871395
+        rotation -0.6952904560672832 -0.6952910222794465 0.182048279418816 3.501745889523551
         children [
           USE shape_wheel
         ]
@@ -96,13 +136,11 @@ Robot {
         boundingObject USE shape_wheel
         physics DEF fisica_wheel Physics {
         }
-        linearVelocity -0.03999407295250189 2.848949435638111e-05 -0.0009487714086200623
-        angularVelocity -0.0474901923825938 0.00025216019263889466 1.9997348711877228
       }
     }
     HingeJoint {
       jointParameters HingeJointParameters {
-        position -74.49600055404025
+        position -74.75200055436291
         anchor 0.05 1.96932e-07 -0.09
       }
       device [
@@ -111,8 +149,8 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation 0.0499998631936025 2.8797168584774e-06 -0.0900011037406318
-        rotation -0.31048982971160277 -0.31048941749454506 -0.8984388611750708 1.6776897313418635
+        translation 0.0499998631936025 2.512805002529981e-06 -0.09000174708620717
+        rotation -0.4062649134093527 -0.406264623115755 -0.8184728927320102 1.769785984853576
         children [
           USE shape_wheel
         ]
@@ -120,13 +158,11 @@ Robot {
         boundingObject USE shape_wheel
         physics DEF fisica_wheel Physics {
         }
-        linearVelocity -0.03999192048341094 2.5966621783967144e-05 -0.0009487124701183475
-        angularVelocity -0.04749019040690639 0.00025216001983348845 1.9997347851521448
       }
     }
     HingeJoint {
       jointParameters HingeJointParameters {
-        position -74.49600051717428
+        position -74.75200050780575
         anchor 0.05 2.07294e-08 0.08
       }
       device [
@@ -135,8 +171,8 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation 0.049998681381334786 3.9894531111022857e-07 0.07999791202544079
-        rotation -0.3069538240071616 -0.3069534131401626 -0.9008656681708906 1.6750072216833498
+        translation 0.049998681381334786 -1.4208269992448957e-07 0.0799978843021824
+        rotation -0.40328633213388493 -0.403286040313656 -0.8214137227987673 1.7662688620943208
         children [
           USE shape_wheel
         ]
@@ -144,8 +180,6 @@ Robot {
         boundingObject USE shape_wheel
         physics DEF fisica_wheel Physics {
         }
-        linearVelocity -0.03999398960607767 7.460695899869812e-05 -0.0009505647673095558
-        angularVelocity -0.04749021094811885 0.0002521735832858617 1.999734869099338
       }
     }
     DEF rus_shape Shape {
@@ -209,8 +243,6 @@ Robot {
   }
   controller "meuRobo"
   synchronization FALSE
-  linearVelocity -0.03998837002258763 5.5473638133411275e-05 -0.000949569953651349
-  angularVelocity -1.8879940046539088e-05 1.4982646617146955e-05 0.0002983719692812878
 }
 Solid {
   translation 0 0.002 -1.65591e-06

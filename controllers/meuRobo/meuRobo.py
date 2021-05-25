@@ -85,11 +85,11 @@ class MeuRobot:
         self.mainSensor = self.robot.getDevice("main_sensor")
         self.mainSensor.enable(timestep)
         
-        #self.leftSensor = self.robot.getDevice("left_sensor")
-        #self.leftSensor.enable(timestep)
+        self.leftSensor = self.robot.getDistanceSensor("left_sensor")
+        self.leftSensor.enable(timestep)
         
-        #self.rightSensor = self.robot.getDevice("right_sensor")
-        #self.rightSensor.enable(timestep)
+        self.rightSensor = self.robot.getDistanceSensor("right_sensor")
+        self.rightSensor.enable(timestep)
         
         self.cv = self.robot.getDevice("camera")
         self.cv.enable(timestep)
@@ -108,12 +108,21 @@ class TI502(MeuRobot):
         
         while self.robot.step(timestep) != -1:
             self.cv.saveImage("image.png", 720)
-            #l_dist = self.leftSensor.getValue()
-            #r_dist = self.rightSensor.getValue()
+            l_dist = self.leftSensor.getValue()
+            r_dist = self.rightSensor.getValue()
             
             distLine = self.mainSensor.getValue()
-            print(distLine)
+            print(l_dist)
             
+            if distLine <= 800:
+                if l_dist >= 800:
+                    #vira esquerda
+                    self.motor_tras_dir.setVelocity(-2.0)
+                    self.motor_tras_esq.setVelocity(0)      
+                else: 
+                    #vira direita
+                     self.motor_tras_esq.setVelocity(-2.0) 
+                     self.motor_tras_dir.setVelocity(0)            
              
     
 
