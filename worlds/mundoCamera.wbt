@@ -3,8 +3,8 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation -0.23610707662694044 0.943073559849125 0.2342343038074892 1.5950898619946916
-  position -0.28903943614946725 0.49422134570125476 0.8546301050328395
+  orientation -0.15382749327034598 0.971265698108364 0.1816040913422217 1.7307045400260597
+  position -0.39622316136281277 0.2609316898197778 0.842886512425741
 }
 TexturedBackground {
 }
@@ -51,7 +51,7 @@ Solid {
   name "tinker.obj"
 }
 Robot {
-  translation -1.0413898497003673 0.03945326491524277 0.8500106271120839
+  translation -1.08139 0.0396837 0.850026
   rotation 0.005181752642362932 0.9999864071556653 -0.0005787429975290287 1.5712321808712562
   children [
     DEF body Shape {
@@ -73,8 +73,8 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation 0.0600010018117803 7.0930360817441375e-06 0.0500000050183363
-        rotation -0.7053035526132438 0.7047424022266967 0.07671404809343439 2.9883429533485684
+        translation 0.0600010018117803 7.0930360817441214e-06 0.0500000050183363
+        rotation -0.7053035526132438 0.7047424022266967 0.07671404809343435 2.9883429533485684
         children [
           DEF wheel Shape {
             appearance PBRAppearance {
@@ -124,7 +124,7 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation 0.06 6.103677485721171e-09 -0.04999999933559549
+        translation 0.06 6.1036774858430985e-09 -0.04999999933559549
         rotation -0.7053037260781961 0.7047422973332896 0.07671341688133913 2.98834422030629
         children [
           USE wheel
@@ -146,7 +146,7 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation -0.059999999999999984 4.2753390455743157e-08 -0.0499999953460473
+        translation -0.059999999999999984 4.2753390455747954e-08 -0.0499999953460473
         rotation -0.7053036265310018 0.7047421978653274 0.07671524587828074 2.988340580850945
         children [
           USE wheel
@@ -255,6 +255,50 @@ Robot {
           }
         }
       ]
+    }
+    DistanceSensor {
+      translation 0.04 0 0.12
+      rotation 0 -0.9999999999999999 0 1.5707953071795862
+      children [
+        Transform {
+          translation 0.01 1.01962e-08 0
+          rotation 0 0 1 -1.5707953071795862
+          children [
+            Shape {
+              appearance PBRAppearance {
+              }
+              geometry Cylinder {
+                height 0.004
+                radius 0.008
+              }
+            }
+          ]
+        }
+      ]
+      name "left_obj"
+      type "infra-red"
+    }
+    DistanceSensor {
+      translation -0.04 0 0.12
+      rotation 0 -0.9999999999999999 0 1.5707953071795862
+      children [
+        Transform {
+          translation 0.01 1.01962e-08 0
+          rotation 0 0 1 -1.5707953071795862
+          children [
+            Shape {
+              appearance PBRAppearance {
+              }
+              geometry Cylinder {
+                height 0.004
+                radius 0.008
+              }
+            }
+          ]
+        }
+      ]
+      name "right_obj"
+      type "infra-red"
     }
   ]
   boundingObject DEF body Shape {
