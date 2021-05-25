@@ -3,265 +3,21 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation 0.1687425679935286 0.9320821818776349 0.3205444617727422 4.034993809206547
-  position 0.9778193410668801 0.1707281624981672 -0.8764255355618056
+  orientation -0.18910519702665424 0.9723053573602723 0.13733723641468554 1.2373107143451478
+  position -0.21170245134387713 0.2801356492875978 1.1284603156924928
 }
 TexturedBackground {
 }
 TexturedBackgroundLight {
 }
 RectangleArena {
-  floorSize 4 4
+  floorSize 5 4
   floorAppearance Parquetry {
     type "light strip"
   }
 }
-Robot {
-  translation 1.3727 0.0199609 -0.72809
-  rotation 0.00011262599925882313 -0.9999999934191317 2.1843099856253438e-05 -1.2852653071795865
-  children [
-    DistanceSensor {
-      translation 0.02 -1.01962e-08 -0.13
-      rotation 0 0 -1 1.5708
-      children [
-        Transform {
-          rotation 0 0 1 -1.5707953071795862
-          children [
-            DEF shape_sensor Shape {
-              appearance PBRAppearance {
-              }
-              geometry Cylinder {
-                height 0.004
-                radius 0.008
-              }
-            }
-          ]
-        }
-      ]
-      name "right_sensor"
-      lookupTable [
-        0.005 1024 0
-        0.05 0 0
-      ]
-      type "infra-red"
-      aperture 1.57
-    }
-    DistanceSensor {
-      translation 0 0 -0.13
-      rotation 0 0 -1 1.5707996938995747
-      children [
-        Transform {
-          rotation 0 0 1 -1.5707953071795862
-          children [
-            DEF shape_sensor Shape {
-              appearance PBRAppearance {
-              }
-              geometry Cylinder {
-                height 0.004
-                radius 0.008
-              }
-            }
-          ]
-        }
-      ]
-      name "main_sensor"
-      lookupTable [
-        0.01 1024 0
-        0.05 0 0
-      ]
-      type "infra-red"
-    }
-    DistanceSensor {
-      translation -0.02 -2.03924e-08 -0.13
-      rotation 0 0 1 -1.5707953071795862
-      children [
-        Transform {
-          rotation 0 0 1 -1.5707953071795862
-          children [
-            DEF shape_sensor Shape {
-              appearance PBRAppearance {
-              }
-              geometry Cylinder {
-                height 0.004
-                radius 0.008
-              }
-            }
-          ]
-        }
-      ]
-      name "left_sensor"
-      lookupTable [
-        0.01 1024 0
-        0.05 0 0
-      ]
-      type "infra-red"
-    }
-    HingeJoint {
-      jointParameters HingeJointParameters {
-        position -83.77599809810938
-        anchor 0.05 9.02874e-08 0.08
-      }
-      device [
-        RotationalMotor {
-          name "motor_roda_tras_esq"
-        }
-      ]
-      endPoint Solid {
-        translation -0.04999778077564862 2.262764767502971e-06 0.07999551895743368
-        rotation -0.6957477192771403 -0.6957481575848099 0.17852062160434093 3.4949131702810625
-        children [
-          Solid {
-            children [
-              DEF shape_wheel Shape {
-                appearance PBRAppearance {
-                }
-                geometry Cylinder {
-                  height 0.01
-                  radius 0.02
-                }
-              }
-            ]
-            boundingObject USE shape_wheel
-            physics Physics {
-            }
-          }
-        ]
-        name "roda_tras_esq"
-        boundingObject USE shape_wheel
-        physics Physics {
-        }
-      }
-    }
-    HingeJoint {
-      jointParameters HingeJointParameters {
-        position -83.77599801185865
-        anchor -0.05 2.66492e-07 -0.09
-      }
-      device [
-        RotationalMotor {
-          name "motor_roda_diant_esq"
-        }
-      ]
-      endPoint Solid {
-        translation -0.04999983332821267 5.075114175052934e-06 -0.09000177149871395
-        rotation -0.6952904560672832 -0.6952910222794465 0.182048279418816 3.501745889523551
-        children [
-          USE shape_wheel
-        ]
-        name "roda_diant_esq"
-        boundingObject USE shape_wheel
-        physics DEF fisica_wheel Physics {
-        }
-      }
-    }
-    HingeJoint {
-      jointParameters HingeJointParameters {
-        position -74.75200055436291
-        anchor 0.05 1.96932e-07 -0.09
-      }
-      device [
-        RotationalMotor {
-          name "motor_roda_diant_dir"
-        }
-      ]
-      endPoint Solid {
-        translation 0.0499998631936025 2.5128050025299183e-06 -0.09000174708620717
-        rotation -0.4062649134093527 -0.406264623115755 -0.8184728927320102 1.7697859848535757
-        children [
-          USE shape_wheel
-        ]
-        name "roda_diant_dir"
-        boundingObject USE shape_wheel
-        physics DEF fisica_wheel Physics {
-        }
-      }
-    }
-    HingeJoint {
-      jointParameters HingeJointParameters {
-        position -74.75200050780575
-        anchor 0.05 2.07294e-08 0.08
-      }
-      device [
-        RotationalMotor {
-          name "motor_roda_tras_dir"
-        }
-      ]
-      endPoint Solid {
-        translation 0.049998681381334786 -1.4208269992444446e-07 0.0799978843021824
-        rotation -0.40328633213388493 -0.403286040313656 -0.8214137227987673 1.7662688620943208
-        children [
-          USE shape_wheel
-        ]
-        name "roda_tras_dir"
-        boundingObject USE shape_wheel
-        physics DEF fisica_wheel Physics {
-        }
-      }
-    }
-    DEF rus_shape Shape {
-      appearance PBRAppearance {
-        baseColor 0.58 0.4 1
-        roughness 1
-        metalness 0
-      }
-      geometry Box {
-        size 0.1 0.01 0.25
-      }
-    }
-    Solid {
-      translation 0 -0.01 -0.117
-      children [
-        Transform {
-          children [
-            Shape {
-              appearance PBRAppearance {
-                baseColor 0.4 1 0.2
-                roughness 1
-                metalness 0
-              }
-              geometry Box {
-                size 0.1 0.01 0.02
-              }
-            }
-          ]
-        }
-      ]
-    }
-    Camera {
-      translation 0 0.007 -0.114
-      rotation 0.997247439051535 -0.029256912880747554 -0.06812912999476152 0
-      children [
-        Transform {
-          children [
-            DEF shape_cam Shape {
-              appearance PBRAppearance {
-                baseColor 0.9 0.9 0.1
-                roughness 1
-                metalness 0
-              }
-              geometry Sphere {
-                radius 0.01
-                subdivision 4
-              }
-            }
-          ]
-        }
-      ]
-      boundingObject USE shape_cam
-      fieldOfView 1.047
-      width 256
-      height 128
-    }
-  ]
-  name "rus"
-  boundingObject USE rus_shape
-  physics Physics {
-  }
-  controller "meuRobo"
-  synchronization FALSE
-}
 Solid {
-  translation 0 0.002 -1.65591e-06
+  translation 0 0.00199968 0.079998
   rotation 1 0 0 1.5708
   scale 0.02 0.02 0.02
   children [
@@ -293,4 +49,221 @@ Solid {
     }
   ]
   name "tinker.obj"
+}
+Robot {
+  translation -1.0413898497003673 0.03945326491524277 0.8500106271120839
+  rotation 0.005181752642362932 0.9999864071556653 -0.0005787429975290287 1.5712321808712562
+  children [
+    DEF body Shape {
+      appearance PBRAppearance {
+        baseColor 0 1 0
+      }
+      geometry Box {
+        size 0.1 0.01 0.25
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 22.208002581807666
+        anchor 0.060001 7.11505e-06 0.05
+      }
+      device [
+        RotationalMotor {
+          name "motor_diant_esq"
+        }
+      ]
+      endPoint Solid {
+        translation 0.0600010018117803 7.093036081744179e-06 0.0500000050183363
+        rotation -0.7053035526132438 0.7047424022266967 0.07671404809343448 2.9883429533485684
+        children [
+          DEF wheel Shape {
+            appearance PBRAppearance {
+              baseColor 0 0 0.498039
+            }
+            geometry Cylinder {
+              height 0.02
+              radius 0.04
+            }
+          }
+        ]
+        boundingObject USE wheel
+        physics Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 22.197940997514063
+        anchor -0.06 0.000602968 0.060003
+      }
+      device [
+        RotationalMotor {
+          name "motor_diant_dir"
+        }
+      ]
+      endPoint Solid {
+        translation -0.06 0.0011924735203843418 0.06012973851214363
+        rotation -0.7054932383016274 0.7049316587031139 0.07314811869597035 2.9954405829767037
+        children [
+          USE wheel
+        ]
+        name "solid(1)"
+        boundingObject USE wheel
+        physics Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 22.208001063144415
+        anchor 0.06 3.088e-09 -0.05
+      }
+      device [
+        RotationalMotor {
+          name "motor_tras_esq"
+        }
+      ]
+      endPoint Solid {
+        translation 0.06 6.103677485418579e-09 -0.04999999933559549
+        rotation -0.7053037260781961 0.7047422973332896 0.07671341688133913 2.98834422030629
+        children [
+          USE wheel
+        ]
+        name "solid(2)"
+        boundingObject USE wheel
+        physics Physics {
+        }
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 22.208006223269717
+        anchor -0.06 2.163e-08 -0.05
+      }
+      device [
+        RotationalMotor {
+          name "motor_tras_dir"
+        }
+      ]
+      endPoint Solid {
+        translation -0.059999999999999984 4.275339045573126e-08 -0.0499999953460473
+        rotation -0.7053036265310018 0.7047421978653274 0.07671524587828074 2.988340580850945
+        children [
+          USE wheel
+        ]
+        name "solid(3)"
+        boundingObject USE wheel
+        physics Physics {
+        }
+      }
+    }
+    DistanceSensor {
+      translation 0.0300002 -0.06 0.12
+      rotation 0 0 1 1.5708
+      children [
+        Transform {
+          translation 0.05 -1.01962e-07 0
+          rotation 0 0 1 -1.5707953071795862
+          children [
+            Shape {
+              appearance PBRAppearance {
+              }
+              geometry Cylinder {
+                height 0.004
+                radius 0.008
+              }
+            }
+          ]
+        }
+      ]
+      name "left_sensor"
+      recognitionColors [
+        0 0 0
+      ]
+      lookupTable [
+        0.01 1024 0
+        0.05 0 0
+      ]
+      type "infra-red"
+    }
+    DistanceSensor {
+      translation -0.0299998 -0.06 0.12
+      rotation 0 0 1 1.5708
+      children [
+        Transform {
+          translation 0.05 -1.01962e-07 0
+          rotation 0 0 1 -1.5707953071795862
+          children [
+            Shape {
+              appearance PBRAppearance {
+              }
+              geometry Cylinder {
+                height 0.004
+                radius 0.008
+              }
+            }
+          ]
+        }
+      ]
+      name "right_sensor"
+      recognitionColors [
+        0 0 0
+      ]
+      lookupTable [
+        0.01 1024 0
+        0.05 0 0
+      ]
+      type "infra-red"
+    }
+    DistanceSensor {
+      translation 2e-07 -0.06 0.12
+      rotation 0 0 1 1.5708
+      children [
+        Transform {
+          translation 0.05 -1.01962e-07 0
+          rotation 0 0 1 -1.5707953071795862
+          children [
+            Shape {
+              appearance PBRAppearance {
+              }
+              geometry Cylinder {
+                height 0.004
+                radius 0.008
+              }
+            }
+          ]
+        }
+      ]
+      name "main_sensor"
+      recognitionColors [
+        0 0 0
+      ]
+      lookupTable [
+        0.01 1024 0
+        0.05 0 0
+      ]
+      type "infra-red"
+    }
+    Camera {
+      translation 0 0.07 0
+      children [
+        Shape {
+          geometry Box {
+            size 0.1 0.1 0.1
+          }
+        }
+      ]
+    }
+  ]
+  boundingObject DEF body Shape {
+    appearance PBRAppearance {
+      baseColor 0 1 0
+    }
+    geometry Box {
+      size 0.1 0.05 0.2
+    }
+  }
+  physics Physics {
+  }
+  controller "meuRobo"
 }

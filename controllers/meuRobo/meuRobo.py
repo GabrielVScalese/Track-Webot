@@ -66,34 +66,34 @@ class MeuRobot:
         self.nome  = robot.getName()
         print("Nome do robo : ", self.nome)
         
-        self.motor_diant_esq = self.robot.getDevice("motor_roda_diant_esq")
-        self.motor_tras_esq = self.robot.getDevice("motor_roda_tras_esq")
-        self.motor_diant_dir = self.robot.getDevice("motor_roda_diant_dir")
-        self.motor_tras_dir = self.robot.getDevice("motor_roda_tras_dir")
+        self.motor_diant_esq = self.robot.getDevice("motor_diant_esq")
+        self.motor_tras_esq = self.robot.getDevice("motor_tras_esq")
+        self.motor_diant_dir = self.robot.getDevice("motor_diant_dir")
+        self.motor_tras_dir = self.robot.getDevice("motor_tras_dir")
         
         self.motor_diant_esq.setPosition(float('inf'))
         self.motor_tras_esq.setPosition(float('inf'))
         self.motor_diant_dir.setPosition(float('inf')) 
         self.motor_tras_dir.setPosition(float('inf'))       
         
-        self.motor_diant_esq.setVelocity(-5.0)
-        self.motor_tras_esq.setVelocity(-5.0)
-        self.motor_diant_dir.setVelocity(-5.0)
-        self.motor_tras_dir.setVelocity(-5.0)      
-        
-        self.mainSensor = self.robot.getDevice("main_sensor")
-        self.mainSensor.enable(timestep)
-        
+        self.motor_diant_esq.setVelocity(1.0)
+        self.motor_tras_esq.setVelocity(1.0)
+        self.motor_diant_dir.setVelocity(1.0)
+        self.motor_tras_dir.setVelocity(1.0)      
+       
         self.leftSensor = self.robot.getDevice("left_sensor")
         self.leftSensor.enable(timestep)
         
         self.rightSensor = self.robot.getDevice("right_sensor")
         self.rightSensor.enable(timestep)
         
-        self.cv = self.robot.getDevice("camera")
-        self.cv.enable(timestep)
+        self.mainSensor = self.robot.getDevice("main_sensor")
+        self.mainSensor.enable(timestep)
         
-        img = self.cv.getImage()
+        #self.cv = self.robot.getDevice("camera")
+        #self.cv.enable(timestep)
+        
+        #img = self.cv.getImage()
        
         self.parado = False
        
@@ -106,30 +106,33 @@ class TI502(MeuRobot):
         sentido = 0
         
         while self.robot.step(timestep) != -1:
-            self.cv.saveImage("image.png", 720)
-            l_dist = self.leftSensor.getValue()
-            r_dist = self.rightSensor.getValue()
+            rightDistance = self.rightSensor.getValue()
+            leftDistance = self.leftSensor.getValue()
+            mainDistance = self.mainSensor.getValue()
             
-            distLine = self.mainSensor.getValue()
-            print(f"Left: {l_dist} | Main: {distLine} | Right: {r_dist}")
-          
-             
-            if l_dist != 0:
-            # vai pra esquerda
-                self.motor_diant_esq.setVelocity(-5.0)
-                self.motor_tras_esq.setVelocity(-5.0)
-                self.motor_diant_dir.setVelocity(0.2)
-                self.motor_tras_dir.setVelocity(0.2)      
+            print(f"Left: {leftDistance} | Main: {mainDistance} | Right: {rightDistance}")
+            
+            if mainDistance == 0:
+                self.motor_diant_esq.setVelocity(1.0)
+                self.motor_tras_esq.setVelocity(1.0)
+                self.motor_diant_dir.setVelocity(1.0)
+                self.motor_tras_dir.setVelocity(1.0)
+            else:
+                if rightDistance != 0:
+                    # go to left
+                    self.motor_diant_esq.setVelocity(-1.0)
+                    self.motor_tras_esq.setVelocity(-1.0)
+                    self.motor_diant_dir.setVelocity(1.0)
+                    self.motor_tras_dir.setVelocity(1.0)
+                    
+                elif leftDistance != 0:
+                    # go to right
+                    self.motor_diant_esq.setVelocity(1.0)
+                    self.motor_tras_esq.setVelocity(1.0)
+                    self.motor_diant_dir.setVelocity(-1.0)
+                    self.motor_tras_dir.setVelocity(-1.0)
         
-            if r_dist != 0:
-            # vai pra direita 
-                self.motor_diant_esq.setVelocity(0.2)
-                self.motor_tras_esq.setVelocity(0.2)
-                self.motor_diant_dir.setVelocity(-10.0)
-                self.motor_tras_dir.setVelocity(-10.0)   
-            
-    
-
+             
 robot = Robot()
 
 robot_controler = TI502(robot)
