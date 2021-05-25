@@ -76,10 +76,10 @@ class MeuRobot:
         self.motor_diant_dir.setPosition(float('inf')) 
         self.motor_tras_dir.setPosition(float('inf'))       
         
-        self.motor_diant_esq.setVelocity(-2.0)
-        self.motor_tras_esq.setVelocity(-2.0)
-        self.motor_diant_dir.setVelocity(-2.0)
-        self.motor_tras_dir.setVelocity(-2.0)      
+        self.motor_diant_esq.setVelocity(-5.0)
+        self.motor_tras_esq.setVelocity(-5.0)
+        self.motor_diant_dir.setVelocity(-5.0)
+        self.motor_tras_dir.setVelocity(-5.0)      
         
         self.mainSensor = self.robot.getDevice("main_sensor")
         self.mainSensor.enable(timestep)
@@ -112,17 +112,22 @@ class TI502(MeuRobot):
             
             distLine = self.mainSensor.getValue()
             print(f"Left: {l_dist} | Main: {distLine} | Right: {r_dist}")
-            
-            #if distLine <= 800:
-                #if l_dist >= 800:
-                    #vira esquerda
-                    #self.motor_tras_dir.setVelocity(-2.0)
-                    #self.motor_tras_esq.setVelocity(0)      
-                #else: 
-                    #vira direita
-                    # self.motor_tras_esq.setVelocity(-2.0) 
-                     #self.motor_tras_dir.setVelocity(0)            
+          
              
+            if l_dist != 0:
+            # vai pra esquerda
+                self.motor_diant_esq.setVelocity(-5.0)
+                self.motor_tras_esq.setVelocity(-5.0)
+                self.motor_diant_dir.setVelocity(0.2)
+                self.motor_tras_dir.setVelocity(0.2)      
+        
+            if r_dist != 0:
+            # vai pra direita 
+                self.motor_diant_esq.setVelocity(0.2)
+                self.motor_tras_esq.setVelocity(0.2)
+                self.motor_diant_dir.setVelocity(-10.0)
+                self.motor_tras_dir.setVelocity(-10.0)   
+            
     
 
 robot = Robot()
