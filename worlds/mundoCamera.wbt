@@ -3,8 +3,8 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation -0.07592120910003262 -0.9946445438822142 -0.07012988902123779 1.5800961924224206
-  position 0.32493530996074294 0.1908013747033633 -0.838327967103357
+  orientation -0.11354728181928164 -0.9855240490920176 -0.1258942550425835 1.7357233012875952
+  position 0.09232215720911108 0.40737668539306626 -0.8535799840883095
 }
 TexturedBackground {
 }
@@ -12,13 +12,16 @@ TexturedBackgroundLight {
 }
 RectangleArena {
   floorSize 4 4
+  floorAppearance Parquetry {
+    type "light strip"
+  }
 }
 Robot {
-  translation 1.1914515058398945 0.01994479083909328 -0.7713805873747783
+  translation 1.38044 0.0199615 -0.726884
   rotation -9.333620561132286e-05 0.9999999951578848 -3.1186262135465735e-05 1.5470602211174806
   children [
     DistanceSensor {
-      translation 0.03 3.05886e-08 -0.13
+      translation 0.03 0 -0.13
       rotation 0 0 -0.9999999999999999 1.5707953071795862
       children [
         Transform {
@@ -36,11 +39,16 @@ Robot {
         }
       ]
       name "right_sensor"
+      lookupTable [
+        0.005 1024 0
+        0.05 0 0
+      ]
       type "infra-red"
+      aperture 1.57
     }
     DistanceSensor {
       translation 0 0 -0.13
-      rotation 0 0 -0.9999999999999999 1.5707953071795862
+      rotation 0 0 -1 1.5707996938995747
       children [
         Transform {
           rotation 0 0 1 -1.5707953071795862
@@ -57,6 +65,10 @@ Robot {
         }
       ]
       name "main_sensor"
+      lookupTable [
+        0.01 1024 0
+        0.05 0 0
+      ]
       type "infra-red"
     }
     DistanceSensor {
@@ -78,6 +90,10 @@ Robot {
         }
       ]
       name "left_sensor"
+      lookupTable [
+        0.01 1024 0
+        0.05 0 0
+      ]
       type "infra-red"
     }
     HingeJoint {
@@ -92,7 +108,7 @@ Robot {
       ]
       endPoint Solid {
         translation -0.04999778077564862 2.262764767502971e-06 0.07999551895743368
-        rotation -0.6957477192771403 -0.6957481575848099 0.17852062160434093 3.4949131702810625
+        rotation -0.6957477192771402 -0.69574815758481 0.1785206216043409 3.4949131702810625
         children [
           Solid {
             children [
@@ -149,8 +165,8 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation 0.0499998631936025 2.512805002529981e-06 -0.09000174708620717
-        rotation -0.4062649134093527 -0.406264623115755 -0.8184728927320102 1.769785984853576
+        translation 0.0499998631936025 2.5128050025299183e-06 -0.09000174708620717
+        rotation -0.4062649134093527 -0.406264623115755 -0.8184728927320102 1.7697859848535757
         children [
           USE shape_wheel
         ]
@@ -171,7 +187,7 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation 0.049998681381334786 -1.4208269992448957e-07 0.0799978843021824
+        translation 0.049998681381334786 -1.4208269992444446e-07 0.0799978843021824
         rotation -0.40328633213388493 -0.403286040313656 -0.8214137227987673 1.7662688620943208
         children [
           USE shape_wheel
