@@ -90,41 +90,93 @@ class MeuRobot:
         self.mainSensor = self.robot.getDevice("main_sensor")
         self.mainSensor.enable(timestep)
         
+        self.leftObj = self.robot.getDevice("left_obj")
+        self.leftObj.enable(timestep)
+        
+        self.rightObj = self.robot.getDevice("right_obj")
+        self.rightObj.enable(timestep)
+        
         self.camera = self.robot.getDevice("camera")
         self.camera.enable(timestep)
 
 class TI502(MeuRobot):
     def run(self):
         sentido = 0
+        obstaculoR = False
+        obstaculoL = False
+        outLine = False
         
         while self.robot.step(timestep) != -1:
             rightDistance = self.rightSensor.getValue()
             leftDistance = self.leftSensor.getValue()
             mainDistance = self.mainSensor.getValue()
+            self.camera.saveImage("image.png", 720)
             
             #print(f"Left: {leftDistance} | Main: {mainDistance} | Right: {rightDistance}")
             
-            self.camera.saveImage("image.png", 720)
+            lObj = self.leftObj.getValue()
+            rObj = self.rightObj.getValue()
             
-            if mainDistance == 0:
-                self.motor_diant_esq.setVelocity(1.0)
-                self.motor_tras_esq.setVelocity(1.0)
-                self.motor_diant_dir.setVelocity(1.0)
-                self.motor_tras_dir.setVelocity(1.0)
-            else:
-                if rightDistance != 0:
-                    # go to left
-                    self.motor_diant_esq.setVelocity(-1.0)
-                    self.motor_tras_esq.setVelocity(-1.0)
-                    self.motor_diant_dir.setVelocity(1.0)
-                    self.motor_tras_dir.setVelocity(1.0)
+            
+            print(f"Left: {lObj} | Right: {rObj}")
+            print(outLine)
+            if obstaculoR or obstaculoL:
+                if obstaculoR:
+                    print("b")
+                    if rObj == 1000:
+                        print("a")
+                        obstaculoR = False
+                        self.motor_diant_esq.setVelocity(10.0)
+                        self.motor_tras_esq.setVelocity(10.0)
+                        self.motor_diant_dir.setVelocity(10.0)
+                        self.motor_tras_dir.setVelocity(10.0)
+                        outLine = True
+                    else:
+                        self.motor_diant_esq.setVelocity(-4.0)
+                        self.motor_tras_esq.setVelocity(-4.0)
+                        self.motor_diant_dir.setVelocity(1.0)
+                        self.motor_tras_dir.setVelocity(1.0)
+                else:
+                    if lObj == 1000:
+                        obstaculoL = False
+                        self.motor_diant_esq.setVelocity(10.0)
+                        self.motor_tras_esq.setVelocity(10.0)
+                        self.motor_diant_dir.setVelocity(10.0)
+                        self.motor_tras_dir.setVelocity(10.0)
+                        outLine = True
+                 
+            elif outLine:
+                if mainDistance != 0:
+                    outLine = False
+            
+                continue
                     
-                elif leftDistance != 0:
-                    # go to right
+            elif not outLine:
+                if mainDistance == 0:
                     self.motor_diant_esq.setVelocity(1.0)
                     self.motor_tras_esq.setVelocity(1.0)
-                    self.motor_diant_dir.setVelocity(-1.0)
-                    self.motor_tras_dir.setVelocity(-1.0)
+                    self.motor_diant_dir.setVelocity(1.0)
+                    self.motor_tras_dir.setVelocity(1.0)
+                else:
+                    if rightDistance != 0:
+                        # go to left
+                        self.motor_diant_esq.setVelocity(-1.0)
+                        self.motor_tras_esq.setVelocity(-1.0)
+                        self.motor_diant_dir.setVelocity(1.0)
+                        self.motor_tras_dir.setVelocity(1.0)
+                        
+                    elif leftDistance != 0:
+                        # go to right
+                        self.motor_diant_esq.setVelocity(1.0)
+                        self.motor_tras_esq.setVelocity(1.0)
+                        self.motor_diant_dir.setVelocity(-1.0)
+                        self.motor_tras_dir.setVelocity(-1.0)
+                
+                if rObj != 1000:
+                    obstaculoR = True
+                
+                elif lObj != 1000:
+                    obstaculoL = True
         
              
 robot = Robot()

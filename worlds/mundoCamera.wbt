@@ -3,8 +3,8 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation -0.15382749327034598 0.971265698108364 0.1816040913422217 1.7307045400260597
-  position -0.39622316136281277 0.2609316898197778 0.842886512425741
+  orientation -0.24329144053793428 0.9407486182263387 0.2362230138369484 1.5762725035924265
+  position 0.13620740721949987 0.9056785247051601 0.7443679441599398
 }
 TexturedBackground {
 }
@@ -73,8 +73,8 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation 0.0600010018117803 7.0930360817441214e-06 0.0500000050183363
-        rotation -0.7053035526132438 0.7047424022266967 0.07671404809343435 2.9883429533485684
+        translation 0.0600010018117803 7.093036081744026e-06 0.0500000050183363
+        rotation -0.7053035526132438 0.7047424022266968 0.07671404809343339 2.9883429533485684
         children [
           DEF wheel Shape {
             appearance PBRAppearance {
@@ -124,7 +124,7 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation 0.06 6.1036774858430985e-09 -0.04999999933559549
+        translation 0.06 6.103677486550875e-09 -0.04999999933559549
         rotation -0.7053037260781961 0.7047422973332896 0.07671341688133913 2.98834422030629
         children [
           USE wheel
@@ -146,7 +146,7 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation -0.059999999999999984 4.2753390455747954e-08 -0.0499999953460473
+        translation -0.059999999999999984 4.275339045577579e-08 -0.0499999953460473
         rotation -0.7053036265310018 0.7047421978653274 0.07671524587828074 2.988340580850945
         children [
           USE wheel
@@ -246,6 +246,7 @@ Robot {
     }
     Camera {
       translation -2.1684e-19 0.03 0.1
+      rotation 0 1 0 -3.1415853071795863
       children [
         Shape {
           appearance PBRAppearance {
@@ -276,7 +277,10 @@ Robot {
         }
       ]
       name "left_obj"
-      type "infra-red"
+      lookupTable [
+        0.01 1024 0
+        0.1 1000 0
+      ]
     }
     DistanceSensor {
       translation -0.04 0 0.12
@@ -298,7 +302,10 @@ Robot {
         }
       ]
       name "right_obj"
-      type "infra-red"
+      lookupTable [
+        0.01 1024 0
+        0.1 1000 0
+      ]
     }
   ]
   boundingObject DEF body Shape {
@@ -312,4 +319,18 @@ Robot {
   physics Physics {
   }
   controller "meuRobo"
+}
+Solid {
+  translation -0.1 0.04 0.41
+  children [
+    DEF box_body Shape {
+      appearance PBRAppearance {
+      }
+      geometry Box {
+        size 0.05 0.08 0.05
+      }
+    }
+  ]
+  name "solid(4)"
+  boundingObject USE box_body
 }
