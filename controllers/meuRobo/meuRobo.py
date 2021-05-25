@@ -90,16 +90,8 @@ class MeuRobot:
         self.mainSensor = self.robot.getDevice("main_sensor")
         self.mainSensor.enable(timestep)
         
-        #self.cv = self.robot.getDevice("camera")
-        #self.cv.enable(timestep)
-        
-        #img = self.cv.getImage()
-       
-        self.parado = False
-       
-    def run(self):
-        raise NotImplementedError
-
+        self.camera = self.robot.getDevice("camera")
+        self.camera.enable(timestep)
 
 class TI502(MeuRobot):
     def run(self):
@@ -110,7 +102,9 @@ class TI502(MeuRobot):
             leftDistance = self.leftSensor.getValue()
             mainDistance = self.mainSensor.getValue()
             
-            print(f"Left: {leftDistance} | Main: {mainDistance} | Right: {rightDistance}")
+            #print(f"Left: {leftDistance} | Main: {mainDistance} | Right: {rightDistance}")
+            
+            self.camera.saveImage("image.png", 720)
             
             if mainDistance == 0:
                 self.motor_diant_esq.setVelocity(1.0)
