@@ -3,8 +3,8 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation -0.24329144053793428 0.9407486182263387 0.2362230138369484 1.5762725035924265
-  position 0.13620740721949987 0.9056785247051601 0.7443679441599398
+  orientation -0.17412768674185292 0.967435247239623 0.18370789615131008 1.6236760398583487
+  position -0.34578066169157395 0.30616462011353685 0.8444709791366867
 }
 TexturedBackground {
 }
@@ -124,7 +124,7 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation 0.06 6.103677486550875e-09 -0.04999999933559549
+        translation 0.06 6.103677486598808e-09 -0.04999999933559549
         rotation -0.7053037260781961 0.7047422973332896 0.07671341688133913 2.98834422030629
         children [
           USE wheel
@@ -146,7 +146,7 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation -0.059999999999999984 4.275339045577579e-08 -0.0499999953460473
+        translation -0.059999999999999984 4.275339045577768e-08 -0.0499999953460473
         rotation -0.7053036265310018 0.7047421978653274 0.07671524587828074 2.988340580850945
         children [
           USE wheel
@@ -256,9 +256,11 @@ Robot {
           }
         }
       ]
+      width 300
+      height 300
     }
     DistanceSensor {
-      translation 0.04 0 0.12
+      translation 5.19897e-15 0 0.12
       rotation 0 -0.9999999999999999 0 1.5707953071795862
       children [
         Transform {
@@ -276,32 +278,7 @@ Robot {
           ]
         }
       ]
-      name "left_obj"
-      lookupTable [
-        0.01 1024 0
-        0.1 1000 0
-      ]
-    }
-    DistanceSensor {
-      translation -0.04 0 0.12
-      rotation 0 -0.9999999999999999 0 1.5707953071795862
-      children [
-        Transform {
-          translation 0.01 1.01962e-08 0
-          rotation 0 0 1 -1.5707953071795862
-          children [
-            Shape {
-              appearance PBRAppearance {
-              }
-              geometry Cylinder {
-                height 0.004
-                radius 0.008
-              }
-            }
-          ]
-        }
-      ]
-      name "right_obj"
+      name "obj_sensor"
       lookupTable [
         0.01 1024 0
         0.1 1000 0
@@ -321,7 +298,7 @@ Robot {
   controller "meuRobo"
 }
 Solid {
-  translation -0.1 0.04 0.41
+  translation -0.1 0.04 0.84
   children [
     DEF box_body Shape {
       appearance PBRAppearance {
