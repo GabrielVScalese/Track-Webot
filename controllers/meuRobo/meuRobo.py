@@ -114,8 +114,9 @@ class TI502(MeuRobot):
             mainDistance = self.mainSensor.getValue()
            
             # Object sensors
-            #print(f"Left: {lObj} | Right: {rObj}")
-            
+            objDistance = self.objSensor.getValue()
+            print(f"Obj: {objDistance}")
+                
             if mainDistance == 0:
                 self.setMotors(1, 1)
             else:
@@ -124,6 +125,7 @@ class TI502(MeuRobot):
            
                 elif leftDistance != 0: # go to right
                     self.setMotors(1, -1)
+                
                     
                           
 robot = Robot()
