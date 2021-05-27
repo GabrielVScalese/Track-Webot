@@ -74,10 +74,10 @@ class MeuRobot:
         self.motor_diant_dir.setPosition(float('inf')) 
         self.motor_tras_dir.setPosition(float('inf'))       
         
-        self.motor_diant_esq.setVelocity(1.0)
-        self.motor_tras_esq.setVelocity(1.0)
-        self.motor_diant_dir.setVelocity(1.0)
-        self.motor_tras_dir.setVelocity(1.0)      
+        self.motor_diant_esq.setVelocity(2.0)
+        self.motor_tras_esq.setVelocity(2.0)
+        self.motor_diant_dir.setVelocity(2.0)
+        self.motor_tras_dir.setVelocity(2.0)      
        
         self.leftSensor = self.robot.getDevice("left_sensor")
         self.leftSensor.enable(timestep)
@@ -88,8 +88,14 @@ class MeuRobot:
         self.mainSensor = self.robot.getDevice("main_sensor")
         self.mainSensor.enable(timestep)
          
-        self.objSensor = self.robot.getDevice("obj_sensor")
-        self.objSensor.enable(timestep)
+        self.topRightObj = self.robot.getDevice("top_right_obj")
+        self.topRightObj.enable(timestep)
+        
+        self.topLeftObj = self.robot.getDevice("top_left_obj")
+        self.topLeftObj.enable(timestep)
+        
+        self.rightObj = self.robot.getDevice("right_obj")
+        self.rightObj.enable(timestep)
         
         self.camera = self.robot.getDevice("camera")
         self.camera.enable(timestep)
@@ -104,6 +110,7 @@ class TI502(MeuRobot):
     
     def run(self):
         sentido = 0
+        desviando = False        
         
         while self.robot.step(timestep) != -1:
             self.camera.saveImage("image.png", 720)
@@ -114,18 +121,32 @@ class TI502(MeuRobot):
             mainDistance = self.mainSensor.getValue()
            
             # Object sensors
-            objDistance = self.objSensor.getValue()
+            objDistance = self.topRightObj.getValue()
             print(f"Obj: {objDistance}")
+            print(desviando)
+            
                 
-            if mainDistance == 0:
-                self.setMotors(1, 1)
+            if self.topRightObj.getValue() != 1000 or self.topLeftObj.getValue() != 1000:
+                desviando = True
+                self.setMotors(-2, 2)
+                
+            elif desviando == True: 
+                if self.topRightObj.getValue() == 1000 or self.topLeftObj.getValue() == 1000:
+                    self.setMotors(2, 2)
+                if self.rightObj.getValue() != 1000:
+                    self.setMotors(2, -2)
+                    if mainDistance == 0:
+                        desviando = False
             else:
-                if rightDistance != 0: # go to left
-                    self.setMotors(-1, 1)
-           
-                elif leftDistance != 0: # go to right
-                    self.setMotors(1, -1)
-                
+                if mainDistance == 0:
+                    self.setMotors(2, 2)
+                else:
+                    if rightDistance != 0: # go to left
+                        self.setMotors(-2, 2)
+               
+                    elif leftDistance != 0: # go to right
+                        self.setMotors(2, -2)
+                    
                     
                           
 robot = Robot()
