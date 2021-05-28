@@ -23,7 +23,6 @@ def get_ip():
     except:
         IP = '127.0.0.1'
     
-    print(IP)
     return IP
 
 
@@ -59,11 +58,8 @@ def servidor(https, hport):
 
 class MeuRobot:
     def __init__(self, robot):
-        
         self.robot = robot
-        self.nome  = robot.getName()
-        print("Nome do robo : ", self.nome)
-        
+            
         self.motor_diant_esq = self.robot.getDevice("motor_diant_esq")
         self.motor_tras_esq = self.robot.getDevice("motor_tras_esq")
         self.motor_diant_dir = self.robot.getDevice("motor_diant_dir")
@@ -119,13 +115,7 @@ class TI502(MeuRobot):
             rightDistance = self.rightSensor.getValue()
             leftDistance = self.leftSensor.getValue()
             mainDistance = self.mainSensor.getValue()
-           
-            # Object sensors
-            objDistance = self.topRightObj.getValue()
-            print(f"Obj: {objDistance}")
-            print(desviando)
-            
-                
+                 
             if self.topRightObj.getValue() != 1000 or self.topLeftObj.getValue() != 1000:
                 desviando = True
                 self.setMotors(-2, 2)

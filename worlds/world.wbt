@@ -3,8 +3,8 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation -0.321683061889519 0.8832204228023798 0.34123553806450074 1.705826256415008
-  position 2.518437469513123 1.9701286135537028 0.8452354850849053
+  orientation -0.13791119231039714 0.9518208704598705 0.273893288695687 2.18934449899186
+  position 3.220290332416692 2.593221119590141 -1.386315838395249
 }
 TexturedBackground {
 }
@@ -51,8 +51,8 @@ Solid {
   name "tinker.obj"
 }
 Robot {
-  translation -1.08139 0.0396837 0.850026
-  rotation -4.738669977949489e-05 -0.9999999953466878 8.403049960897986e-05 -1.6689053071795863
+  translation -1.0814008337017837 0.03971803668420058 0.8500285371221377
+  rotation 5.929602936373866e-05 -0.9999999957611537 -7.043914772081698e-05 -1.6689053080397716
   children [
     DEF body Shape {
       appearance PBRAppearance {
@@ -64,7 +64,7 @@ Robot {
     }
     HingeJoint {
       jointParameters HingeJointParameters {
-        position -5.631862572421544
+        position -5.631862571293329
         anchor 0.060001 7.11505e-06 0.05
       }
       device [
@@ -73,8 +73,8 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation 0.0600010018117803 7.137131049722106e-06 0.050000004714184906
-        rotation -0.304940178554004 0.3046975165068041 -0.9023141974600852 4.6105688071980975
+        translation 0.0600010018117803 7.137131049720493e-06 0.050000004714184934
+        rotation -0.30494017901604203 0.30469751696847497 -0.902314197148039 4.61056880685406
         children [
           DEF wheel Shape {
             appearance PBRAppearance {
@@ -93,7 +93,7 @@ Robot {
     }
     HingeJoint {
       jointParameters HingeJointParameters {
-        position 50.16583440207922
+        position 50.16583440060368
         anchor -0.06 0.000602968 0.060003
       }
       device [
@@ -102,8 +102,8 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation -0.06 2.6927301707584854e-06 0.06006000008294215
-        rotation -0.04978129337374898 0.04974166697164106 0.9975207212869911 1.5724823563308623
+        translation -0.06 2.692730254870673e-06 0.06006000008382788
+        rotation -0.04978129410845179 0.04974166770575887 0.9975207212137188 1.5724823564043169
         children [
           USE wheel
         ]
@@ -115,7 +115,7 @@ Robot {
     }
     HingeJoint {
       jointParameters HingeJointParameters {
-        position -5.631891020579369
+        position -5.631891019453243
         anchor 0.06 3.088e-09 -0.05
       }
       device [
@@ -124,8 +124,8 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation 0.06 6.321140645414429e-10 -0.050000001871995825
-        rotation -0.3049285046896097 0.3046857785826221 -0.9023221062111136 4.610577930892487
+        translation 0.06 6.321140702542906e-10 -0.050000001871995825
+        rotation -0.3049285051508004 0.3046857790434457 -0.9023221058996543 4.610577930549099
         children [
           USE wheel
         ]
@@ -137,7 +137,7 @@ Robot {
     }
     HingeJoint {
       jointParameters HingeJointParameters {
-        position 50.17587055769376
+        position 50.175870559104375
         anchor -0.06 2.163e-08 -0.05
       }
       device [
@@ -146,8 +146,8 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation -0.059999999999999984 8.678952394552558e-11 -0.04999999806428776
-        rotation -0.0447816717675455 0.0447460251137053 0.997994185910032 1.5720078280485608
+        translation -0.059999999999999984 8.678952486409311e-11 -0.04999999806428779
+        rotation -0.04478167106450615 0.04474602441122556 0.9979941859730749 1.572007827985391
         children [
           USE wheel
         ]
@@ -330,6 +330,27 @@ Robot {
       ]
       name "right_obj"
     }
+    DistanceSensor {
+      translation 0.05 -1.16639e-06 8.71459e-08
+      rotation 1 -1.131e-06 -2.1786e-07 -3.1415853071795863
+      children [
+        Transform {
+          translation -3.17068e-09 -3.71073e-11 0
+          rotation 0 0 1 1.57
+          children [
+            Shape {
+              appearance PBRAppearance {
+              }
+              geometry Cylinder {
+                height 0.004
+                radius 0.008
+              }
+            }
+          ]
+        }
+      ]
+      name "left_obj"
+    }
   ]
   boundingObject DEF body Shape {
     appearance PBRAppearance {
@@ -341,7 +362,7 @@ Robot {
   }
   physics Physics {
   }
-  controller "meuRobo"
+  controller "myRobot"
 }
 Solid {
   translation 0.63 0.04 0.7
