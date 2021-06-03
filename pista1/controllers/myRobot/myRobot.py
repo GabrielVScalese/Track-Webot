@@ -106,7 +106,7 @@ class TI502(MeuRobot):
     
     def run(self):
         sentido = 0
-        desviando = False        
+        desviando = False    
         
         while self.robot.step(timestep) != -1:
             self.camera.saveImage("image.png", 720)
@@ -131,7 +131,10 @@ class TI502(MeuRobot):
                 if mainDistance == 0 and rightDistance != 0 and leftDistance != 0:
                     self.setMotors(2, 2)
                 else:
-                    if rightDistance != 0: # go to left
+                    if rightDistance == 0 and leftDistance == 0:
+                        self.setMotors(2, 2)
+                    
+                    elif rightDistance != 0: # go to left
                         self.setMotors(-2, 2)
                
                     elif leftDistance != 0: # go to right

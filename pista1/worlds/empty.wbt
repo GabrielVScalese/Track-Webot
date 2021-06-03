@@ -3,8 +3,8 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation 0.998491164118883 0.054911717916048985 -0.0003137069112586393 5.813075230108383
-  position -0.4858045322076272 4.134315705319266 7.89350735520611
+  orientation 0.9766627373909053 -0.2059993366076452 -0.060779689940917696 5.8237713025890745
+  position 0.8621472743520755 4.2626309699201235 9.136996314370501
 }
 TexturedBackground {
 }
@@ -156,7 +156,7 @@ Robot {
       }
     }
     DistanceSensor {
-      translation 0.0300002 -0.06 0.12
+      translation 0.0300002 -0.06 0.11
       rotation 0 0 1 1.5708
       children [
         Transform {
@@ -185,7 +185,7 @@ Robot {
       type "infra-red"
     }
     DistanceSensor {
-      translation -0.0299998 -0.06 0.12
+      translation -0.0299998 -0.06 0.11
       rotation 0 0 1 1.5708
       children [
         Transform {
