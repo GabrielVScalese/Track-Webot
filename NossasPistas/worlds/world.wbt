@@ -3,8 +3,8 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation -0.13791119231039714 0.9518208704598705 0.273893288695687 2.18934449899186
-  position 3.220290332416692 2.593221119590141 -1.386315838395249
+  orientation -0.11006292081179518 0.9635338239399361 0.24390310286271633 2.255689766352949
+  position 4.28242013444818 2.7474714733094765 -2.9909256101152275
 }
 TexturedBackground {
 }
@@ -50,9 +50,23 @@ Solid {
   ]
   name "tinker.obj"
 }
+Solid {
+  translation 0.63 0.04 0.7
+  children [
+    DEF box_body Shape {
+      appearance PBRAppearance {
+      }
+      geometry Box {
+        size 0.05 0.08 0.05
+      }
+    }
+  ]
+  name "solid(4)"
+  boundingObject USE box_body
+}
 Robot {
-  translation -1.0814008337017837 0.03971803668420058 0.8500285371221377
-  rotation 5.929602936373866e-05 -0.9999999957611537 -7.043914772081698e-05 -1.6689053080397716
+  translation -1.41393 0.0448552 0.811505
+  rotation 0.00034447988936377487 -0.9999956788324936 -0.0029195290623380797 -1.5491953071795859
   children [
     DEF body Shape {
       appearance PBRAppearance {
@@ -64,7 +78,7 @@ Robot {
     }
     HingeJoint {
       jointParameters HingeJointParameters {
-        position -5.631862571293329
+        position 519.167243824907
         anchor 0.060001 7.11505e-06 0.05
       }
       device [
@@ -73,8 +87,8 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation 0.0600010018117803 7.137131049720493e-06 0.050000004714184934
-        rotation -0.30494017901604203 0.30469751696847497 -0.902314197148039 4.61056880685406
+        translation 0.0600010018117803 7.093946423111699e-06 0.04999999197283745
+        rotation 0.6774244540960196 -0.6768854955016763 -0.28796203738020765 3.7027692236258423
         children [
           DEF wheel Shape {
             appearance PBRAppearance {
@@ -93,7 +107,7 @@ Robot {
     }
     HingeJoint {
       jointParameters HingeJointParameters {
-        position 50.16583440060368
+        position 588.5343534686464
         anchor -0.06 0.000602968 0.060003
       }
       device [
@@ -102,8 +116,8 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation -0.06 2.692730254870673e-06 0.06006000008382788
-        rotation -0.04978129410845179 0.04974166770575887 0.9975207212137188 1.5724823564043169
+        translation -0.06 0.0008969551591807893 0.060529451288592565
+        rotation -0.653938423000251 0.6534178815448503 0.3813261215828059 2.412451692041535
         children [
           USE wheel
         ]
@@ -115,7 +129,7 @@ Robot {
     }
     HingeJoint {
       jointParameters HingeJointParameters {
-        position -5.631891019453243
+        position 519.1673834072553
         anchor 0.06 3.088e-09 -0.05
       }
       device [
@@ -124,8 +138,8 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation 0.06 6.321140702542906e-10 -0.050000001871995825
-        rotation -0.3049285051508004 0.3046857790434457 -0.9023221058996543 4.610577930549099
+        translation 0.06 5.22922756464749e-09 -0.04999999777494077
+        rotation 0.6774137374635423 -0.6768745094255435 -0.28801306703968305 3.7028636747118036
         children [
           USE wheel
         ]
@@ -137,7 +151,7 @@ Robot {
     }
     HingeJoint {
       jointParameters HingeJointParameters {
-        position 50.175870559104375
+        position 588.5446014084913
         anchor -0.06 2.163e-08 -0.05
       }
       device [
@@ -146,8 +160,8 @@ Robot {
         }
       ]
       endPoint Solid {
-        translation -0.059999999999999984 8.678952486409311e-11 -0.04999999806428779
-        rotation -0.04478167106450615 0.04474602441122556 0.9979941859730749 1.572007827985391
+        translation -0.059999999999999984 3.207622007060551e-08 -0.049999981059741676
+        rotation -0.6528121101701874 0.652292465270938 0.38516345694511195 2.4057559295122655
         children [
           USE wheel
         ]
@@ -158,7 +172,7 @@ Robot {
       }
     }
     DistanceSensor {
-      translation 0.0300002 -0.06 0.12
+      translation 0.0300002 -0.06 0.11
       rotation 0 0 1 1.5708
       children [
         Transform {
@@ -187,7 +201,7 @@ Robot {
       type "infra-red"
     }
     DistanceSensor {
-      translation -0.0299998 -0.06 0.12
+      translation -0.0299998 -0.06 0.11
       rotation 0 0 1 1.5708
       children [
         Transform {
@@ -352,6 +366,7 @@ Robot {
       name "left_obj"
     }
   ]
+  name "robot(1)"
   boundingObject DEF body Shape {
     appearance PBRAppearance {
       baseColor 0 1 0
@@ -363,18 +378,4 @@ Robot {
   physics Physics {
   }
   controller "myRobot"
-}
-Solid {
-  translation 0.63 0.04 0.7
-  children [
-    DEF box_body Shape {
-      appearance PBRAppearance {
-      }
-      geometry Box {
-        size 0.05 0.08 0.05
-      }
-    }
-  ]
-  name "solid(4)"
-  boundingObject USE box_body
 }

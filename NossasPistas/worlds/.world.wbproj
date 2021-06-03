@@ -8,4 +8,5 @@ orthographicViewHeight: 1
 textFiles: 0 "controllers/myRobot/myRobot.py"
 globalOptionalRendering: DistanceSensorRays
 consoles: Console:All:All
+renderingDevicePerspectives: robot(1):camera;0;1;0;0
 renderingDevicePerspectives: robot:camera;0;1;0.0997567;0.103627
