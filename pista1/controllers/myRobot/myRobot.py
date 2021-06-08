@@ -128,7 +128,7 @@ class TI502(MeuRobot):
                     if mainDistance == 0:
                         desviando = False
             else:
-                if mainDistance == 0 and rightDistance != 0 and leftDistance != 0:
+                if mainDistance == 0:
                     self.setMotors(2, 2)
                 else:
                     if rightDistance == 0 and leftDistance == 0:

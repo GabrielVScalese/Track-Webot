@@ -3,8 +3,8 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation 0.9766627373909053 -0.2059993366076452 -0.060779689940917696 5.8237713025890745
-  position 0.8621472743520755 4.2626309699201235 9.136996314370501
+  orientation 0.7242195468895409 0.6654041897464893 0.18095113199680737 5.532499731901131
+  position -4.174464443787779 5.496140826666298 7.6628050612711105
 }
 TexturedBackground {
 }
@@ -15,9 +15,9 @@ RectangleArena {
   floorAppearance NULL
 }
 Solid {
-  translation -7.40762e-07 0.31 0
+  translation -8.41777e-07 0.34 0
   rotation 0 0 1 1.5707996938995747
-  scale 0.018 0.018 0.018
+  scale 0.02 0.02 0.02
   children [
     Solid {
       name "obj_0"
@@ -49,8 +49,8 @@ Solid {
   name "pista.obj"
 }
 Robot {
-  translation 1.68247 0.0613726 -1.7523
-  rotation 0.00034447988936377487 -0.9999956788324936 -0.0029195290623380797 -1.5491953071795859
+  translation 1.86716 0.062492 -1.95827
+  rotation -0.00034454088879370856 0.9999956772347947 0.0029200690574992367 1.54919
   children [
     DEF body Shape {
       appearance PBRAppearance {
@@ -363,7 +363,7 @@ Robot {
   controller "myRobot"
 }
 Solid {
-  translation -3.1 0.14 -0.4
+  translation -3.46 0.136 -0.45
   rotation 0 0 1 1.5708
   scale 0.01 0.01 0.01
   children [
@@ -404,4 +404,32 @@ Solid {
     }
   ]
   name "emenda.obj"
+}
+Solid {
+  translation -3.58 0.04 0.7
+  children [
+    DEF box_body Shape {
+      appearance PBRAppearance {
+      }
+      geometry Box {
+        size 0.05 0.08 0.05
+      }
+    }
+  ]
+  name "solid(4)"
+  boundingObject USE box_body
+}
+Solid {
+  translation 1.22 0.04 3.15
+  children [
+    DEF box_body Shape {
+      appearance PBRAppearance {
+      }
+      geometry Box {
+        size 0.05 0.08 0.05
+      }
+    }
+  ]
+  name "solid(1)"
+  boundingObject USE box_body
 }
