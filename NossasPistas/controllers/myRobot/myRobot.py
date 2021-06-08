@@ -131,6 +131,9 @@ class TI502(MeuRobot):
                 if mainDistance == 0:
                     self.setMotors(2, 2)
                 else:
+                    if rightDistance == 0 and leftDistance == 0:
+                        self.setMotors(2, 2)
+                        
                     if rightDistance != 0: # go to left
                         self.setMotors(-2, 2)
                
